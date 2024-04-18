@@ -28,8 +28,12 @@ function timer() {
 }
 
 function StuurMelding() {
-  new Notification("Vergeet niet om je water te drinken!");
-  console.log("Notification sent!");
+  if ('Notification' in window) {
+    new Notification("Vergeet niet om je water te drinken!");
+    console.log("Notification sent!");
+  } else {
+    alert("Vergeet niet om je water te drinken!");
+  }
 }
 
 test.addEventListener("click", StuurMelding);
@@ -45,8 +49,5 @@ function check() {
 }
 
 Checkbox.addEventListener("click", check);
-if (Checkbox.checked == true) {
-  timer();
-} else if (Checkbox.checked == false) {
-  clearInterval(interval);
-}
+
+askNotificationPermission();
